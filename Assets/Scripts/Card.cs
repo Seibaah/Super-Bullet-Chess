@@ -4,37 +4,24 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    public GameHandler Handler;
-    public Texture2D RookSpr;
-    string Type;
+    public GameObject PiecePrefab;
+    public Texture2D PieceSprite;
+
+    public Player Player1;
 
     void Start()
     {
-        Type = gameObject.name;
 
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void SelectCard()
     {
-        Destroy(gameObject);
-
-        GameObject O = FindPiecePrefab();
-
-        Instantiate(O);
-
-        Cursor.SetCursor(RookSpr, Vector2.zero, CursorMode.Auto);
+        Player1.SetGameCursorMode(PieceSprite, GameCursorMode.Spawn);
     }
 
-    private GameObject FindPiecePrefab()
-    {
-        foreach (GameObject O in Handler.PiecePrefabs)
-        {
-            if (gameObject.name.Contains(O.name))
-            {
-                return O;
-            }
-        }
-
-        return null;
-    }
 }
